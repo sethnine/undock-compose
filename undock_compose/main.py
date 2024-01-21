@@ -7,8 +7,11 @@ compatible dictionary ready for dumping as a YAML file.
 
 from undocker import argparser, UnDocker
 
-if __name__ == "__main__":
+def main():
     args, unargs = argparser()
 
     container = UnDocker(args.input[0], args.output, args.labels)
     container.compose()
+
+if __name__ == "__main__":
+    main()
