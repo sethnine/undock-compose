@@ -23,3 +23,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 undock = 'undock_compose.main:main'
+undock-bulk = 'undock_compose.bulk:main'
