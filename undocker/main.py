@@ -10,7 +10,7 @@ import yaml
 __author__ = "Arif Er"
 __copyright__ = "Copyright 2022, Arif Er"
 __license__ = "GNU General Public License Version 3 (GPL-3.0)"
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __status__ = "Prototype"
 
 
@@ -83,7 +83,7 @@ class UnDocker:
         :return: The default unRAID environment as a dictionary.
         """
         return {
-            "TZ": "UTC",  # FIXME not a proper way of getting TZ
+            #"TZ": "UTC",  # FIXME not a proper way of getting TZ
             "HOST_OS": "Unraid",
             "HOST_HOSTNAME": self._tag("Name"),
             "HOST_CONTAINERNAME": self._tag("Name"),
@@ -102,10 +102,7 @@ class UnDocker:
         :return: Extra Docker Compose configuration as a dictionary.
         """
         docker_parser = argparse.ArgumentParser()
-        known_args = [
-            (["--restart"], "restart"),
-            (["--net", "--network"], "networks")
-        ]
+        known_args = [(["--restart"], "restart"), (["--net", "--network"], "networks")]
         _ = [docker_parser.add_argument(i[0], dest=i[1]) for i in known_args]
         docker_args = docker_parser.parse_known_args(params.split())[0]
         extra_params = {}
@@ -184,12 +181,7 @@ class UnDocker:
         .. Returns:
         :return: The external network as a dictionary.
         """
-        return {
-            self._tag("Network"): {
-                "external": True,
-                "name": self._tag("Network")
-            }
-        }
+        return {self._tag("Network"): {"external": True, "name": self._tag("Network")}}
 
     def services(self) -> dict:
         """Parse the template to declare the service.
@@ -248,9 +240,11 @@ def argparser() -> tuple:
     parser.add_argument(
         "input",
         nargs=1,
-        help=textwrap.dedent("""\
+        help=textwrap.dedent(
+            """\
         Path to the input XML template file.
-        """),
+        """
+        ),
     )
     parser.add_argument(
         "output",

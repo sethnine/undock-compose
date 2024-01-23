@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "undock-compose"
-version = "0.1.0"
+version = "0.2.0"
 description = "Convert your unRAID Docker XML templates to Docker Compose YAML files."
-authors = ["Arif Er <arifer612@pm.me>"]
+authors = ["Arif Er <arifer612@pm.me>", "sethnine <https://c.jdavie.au>"]
 packages = [
   {include = "undock_compose"},
   {include = "undocker"},
